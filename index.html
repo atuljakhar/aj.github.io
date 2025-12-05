@@ -1,67 +1,328 @@
-<header>
-    <h1>Dr. Atul Jakhar</h1>
-    <span style="font-size:12px; font-weight:600; color:#3665f3;">View CV</span>
-</header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Atul Jakhar | Portfolio</title>
+    
+    <style>
+        /* --- CSS VARIABLES (Cleartrip Palette) --- */
+        :root {
+            --ct-orange: #FF4F17;       /* Primary Action Color */
+            --ct-blue: #3665f3;         /* Link/Highlight Color */
+            --ct-bg: #F4F5F7;           /* App Background */
+            --ct-card-bg: #FFFFFF;      /* Card Background */
+            --ct-text-dark: #1A1A1A;    /* Headings */
+            --ct-text-light: #828282;   /* Subtitles */
+            --card-radius: 12px;        /* Rounded corners */
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+        }
 
-<div class="profile-card">
-    <img src="https://pbs.twimg.com/profile_images/1855943987443736576/RYk6VW1z_400x400.jpg" alt="Profile">
-    <div class="profile-info">
-        <h2>Postdoctoral Fellow</h2>
-        <p>IIT Madras</p>
-        <p style="font-size: 12px; margin-top:4px;">📍 Chennai, India</p>
+        /* --- GLOBAL RESET --- */
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--ct-bg);
+            margin: 0;
+            padding: 0;
+            padding-bottom: 90px; /* Space for bottom nav */
+            color: var(--ct-text-dark);
+        }
+
+        /* --- HEADER (Sticky App Bar) --- */
+        header {
+            background: var(--ct-card-bg);
+            padding: 16px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header h1 {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0;
+            color: var(--ct-orange);
+            letter-spacing: -0.5px;
+        }
+
+        .header-link {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--ct-blue);
+            text-decoration: none;
+        }
+
+        /* --- PROFILE WIDGET (Hero Card) --- */
+        .profile-card {
+            background: var(--ct-card-bg);
+            margin: 16px;
+            padding: 20px;
+            border-radius: var(--card-radius);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .profile-img {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--ct-bg);
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-info h2 {
+            font-size: 18px;
+            margin: 0 0 4px 0;
+            font-weight: 700;
+        }
+
+        .profile-info p {
+            font-size: 14px;
+            color: var(--ct-text-light);
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /* --- SECTION TITLES --- */
+        .section-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: var(--ct-text-light);
+            margin: 24px 16px 10px;
+            letter-spacing: 0.8px;
+            font-weight: 700;
+        }
+
+        /* --- CARDS (The "Booking" Cards) --- */
+        .card {
+            background: var(--ct-card-bg);
+            margin: 0 16px 16px;
+            padding: 18px;
+            border-radius: var(--card-radius);
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid transparent;
+            transition: transform 0.2s ease;
+        }
+
+        .card:active {
+            transform: scale(0.98); /* Subtle press effect */
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .card-role {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--ct-text-dark);
+            max-width: 70%;
+        }
+
+        .card-date {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--ct-text-dark);
+            background: #EBEBEB;
+            padding: 4px 8px;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .card-org {
+            font-size: 14px;
+            color: var(--ct-text-light);
+            margin-bottom: 12px;
+            display: block;
+            font-weight: 500;
+        }
+
+        .card-details {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #444;
+            border-top: 1px dashed #E0E0E0; /* Dashed line like a ticket */
+            padding-top: 12px;
+        }
+
+        /* --- BUTTONS --- */
+        .btn-primary {
+            display: block;
+            background-color: var(--ct-orange);
+            color: white;
+            text-align: center;
+            padding: 16px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            margin: 24px 16px;
+            box-shadow: 0 4px 15px rgba(255, 79, 23, 0.3);
+        }
+
+        /* --- BOTTOM NAVIGATION --- */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0 10px; /* Extra bottom padding for iPhone home bar */
+            border-top: 1px solid #E5E5E5;
+            z-index: 1000;
+            padding-bottom: env(safe-area-inset-bottom); /* iOS Safe Area */
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #999;
+            font-size: 10px;
+            font-weight: 500;
+            width: 25%;
+        }
+
+        .nav-item.active {
+            color: var(--ct-orange);
+        }
+
+        .nav-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+            filter: grayscale(100%);
+            opacity: 0.6;
+        }
+
+        .nav-item.active .nav-icon {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>atul.jakhar</h1>
+        <a href="#" class="header-link">View CV</a>
+    </header>
+
+    <div class="profile-card" id="about">
+        <img src="https://pbs.twimg.com/profile_images/1855943987443736576/RYk6VW1z_400x400.jpg" alt="Atul Jakhar" class="profile-img">
+        <div class="profile-info">
+            <h2>Dr. Atul Jakhar</h2>
+            <p>Postdoctoral Fellow @ IITM</p>
+            <p style="font-size: 12px; margin-top:6px; color: var(--ct-blue);">📍 Chennai, India</p>
+        </div>
     </div>
-</div>
 
-<h2 class="section-title">About</h2>
-<div class="card">
-    <p class="card-details" style="border:none; padding:0;">
-        Specializing in <b>Computational Fluid Mechanics (CFD)</b> and AI in fluid dynamics. Exploring the intersection of classical mechanics and modern tech.
-    </p>
-</div>
-
-<h2 class="section-title">Experience</h2>
-
-<div class="card">
-    <div class="card-header">
-        <span class="card-role">Postdoctoral Fellow</span>
-        <span class="card-date">Dec '25 - Present</span>
+    <div class="card">
+        <div class="card-details" style="border: none; padding-top: 0;">
+            <b>Fluid Dynamics Enthusiast.</b> Specializing in Computational Fluid Mechanics (CFD), AI in fluids, and stability analysis. Bridging the gap between classical simulation and modern AI.
+        </div>
     </div>
-    <span class="card-org">IIT Madras</span>
-    <div class="card-details">
-        Researching AI-driven simulations and stability analysis in fluid dynamics.
-    </div>
-</div>
 
-<div class="card">
-    <div class="card-header">
-        <span class="card-role">Assistant Professor</span>
-        <span class="card-date">2024 - 2025</span>
-    </div>
-    <span class="card-org">Dayananda Sagar University</span>
-    <div class="card-details">
-        Taught Linear Algebra & Differential Equations. Developed curriculum for B.Tech courses.
-    </div>
-</div>
+    <h2 class="section-title">Itinerary (Experience)</h2>
 
-<a href="https://scholar.google.com/citations?user=2P_eyfoAAAAJ&hl=en" class="btn-primary">
-    View Publications
-</a>
+    <div class="card" id="experience">
+        <div class="card-header">
+            <span class="card-role">Postdoctoral Fellow</span>
+            <span class="card-date">Current</span>
+        </div>
+        <span class="card-org">IIT Madras</span>
+        <div class="card-details">
+            • Conducting AI-driven fluid simulations.<br>
+            • Analyzing hydrodynamic stability.<br>
+            • Mentoring M.Tech and PhD students.
+        </div>
+    </div>
 
-<nav class="bottom-nav">
-    <a href="#about" class="nav-item active">
-        <span class="nav-icon">👤</span>
-        About
+    <div class="card">
+        <div class="card-header">
+            <span class="card-role">Asst. Professor</span>
+            <span class="card-date">2024 - 2025</span>
+        </div>
+        <span class="card-org">Dayananda Sagar University</span>
+        <div class="card-details">
+            • Department of Mathematics.<br>
+            • Taught Linear Algebra & Differential Equations.<br>
+            • Designed curriculum for engineering undergraduates.
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-role">PhD Researcher</span>
+            <span class="card-date">2018 - 2024</span>
+        </div>
+        <span class="card-org">IIT Ropar</span>
+        <div class="card-details">
+            • Thesis: Advanced computational models for non-Newtonian fluid flows.
+        </div>
+    </div>
+
+    <h2 class="section-title">Education</h2>
+
+    <div class="card" id="education">
+        <div class="card-header">
+            <span class="card-role">M.Sc Mathematics</span>
+            <span class="card-date">2016 - 2018</span>
+        </div>
+        <span class="card-org">NIT Warangal</span>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <span class="card-role">B.Sc (Hons) Math</span>
+            <span class="card-date">2013 - 2016</span>
+        </div>
+        <span class="card-org">Central Univ. of Rajasthan</span>
+    </div>
+
+    <a href="https://scholar.google.com/citations?user=2P_eyfoAAAAJ&hl=en" class="btn-primary">
+        View Google Scholar
     </a>
-    <a href="#experience" class="nav-item">
-        <span class="nav-icon">💼</span>
-        Work
-    </a>
-    <a href="#education" class="nav-item">
-        <span class="nav-icon">🎓</span>
-        Edu
-    </a>
-    <a href="#research" class="nav-item">
-        <span class="nav-icon">🔬</span>
-        Rsch
-    </a>
-</nav>
+
+    <nav class="bottom-nav">
+        <a href="#about" class="nav-item active">
+            <span class="nav-icon">👤</span>
+            Profile
+        </a>
+        <a href="#experience" class="nav-item">
+            <span class="nav-icon">💼</span>
+            Work
+        </a>
+        <a href="#education" class="nav-item">
+            <span class="nav-icon">🎓</span>
+            Edu
+        </a>
+        <a href="mailto:atul.jakhar@example.com" class="nav-item">
+            <span class="nav-icon">✉️</span>
+            Contact
+        </a>
+    </nav>
+
+</body>
+</html>
