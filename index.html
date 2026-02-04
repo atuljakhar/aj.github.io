@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dr. Atul Jakhar | Researcher & Educator</title>
+  <meta name="description" content="Dr. Atul Jakhar — National Postdoctoral Fellow at IIT Madras. Research in Computational Fluid Dynamics, instability, chaos, and AI-driven simulations." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-2: #f4f4f4;
+      --text: #0a0a0a;
+      --muted: rgba(10, 10, 10, 0.65);
+      --glass: #ffffff;
+      --line: #0a0a0a;
+      --accent: #0a0a0a;
+      --accent-2: #0a0a0a;
+      --accent-3: #0a0a0a;
+      --accent-4: #0a0a0a;
+      --radius-lg: 0px;
+      --radius-md: 0px;
+      --shadow: 8px 8px 0 #000000;
+      --max: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Sora", system-ui, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding-top: calc(env(safe-area-inset-top) + 84px);
+    }
+
+    h1, h2, h3 {
+      font-family: "Syne", sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 4vw, 4.6rem);
+      line-height: 1.03;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+    }
+
+    p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 1.02rem;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .aurora,
+    .noise {
+      display: none;
+    }
+
+    .dynamic-island {
+      position: fixed;
+      top: calc(env(safe-area-inset-top) + 12px);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      width: min(92vw, 620px);
+    }
+
+    .island-core {
+      width: 100%;
+      border-radius: 0px;
+      border: 2px solid var(--line);
+      background: #ffffff;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .island-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 0px;
+      background: #000000;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .island-text {
+      display: grid;
+      gap: 2px;
+    }
+
+    .island-title {
+      font-weight: 600;
+    }
+
+    .island-subtitle {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .island-panel {
+      margin-top: 10px;
+      background: #ffffff;
+      border: 2px solid var(--line);
+      border-radius: 0px;
+      padding: 16px;
+      display: none;
+      box-shadow: var(--shadow);
+    }
+
+    .dynamic-island.expanded .island-panel {
+      display: grid;
+      gap: 12px;
+      animation: pop 0.3s ease;
+    }
+
+    .dynamic-island.compact .island-core {
+      width: min(84vw, 420px);
+      padding: 10px 14px;
+    }
+
+    @keyframes pop {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .island-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      padding: 6px 12px;
+      border-radius: 0px;
+      border: 2px solid var(--line);
+      font-size: 0.8rem;
+      background: #ffffff;
+      cursor: pointer;
+      transition: 0.2s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .chip.active,
+    .chip:hover {
+      background: #ffffff;
+      border-color: #000000;
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+    }
+
+    .hero {
+      display: grid;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .hero-card {
+      background: #ffffff;
+      border: 2px solid var(--line);
+      border-radius: 0px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 18px;
+    }
+
+    .profile {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 0px;
+      border: 2px solid #000000;
+      object-fit: cover;
+      box-shadow: var(--shadow);
+    }
+
+    .badge {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 6px 12px;
+      border-radius: 0px;
+      background: #ffffff;
+      border: 2px solid var(--line);
+      font-size: 0.82rem;
+      box-shadow: var(--shadow);
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .btn {
+      padding: 12px 18px;
+      border-radius: 0px;
+      background: #000000;
+      color: #ffffff;
+      font-weight: 600;
+      border: 2px solid #000000;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.2s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .btn.ghost {
+      background: #ffffff;
+      color: #000000;
+      border: 2px solid #000000;
+      box-shadow: var(--shadow);
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 2px solid var(--line);
+      border-radius: 0px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .section {
+      margin-top: 80px;
+      scroll-margin-top: 110px;
+    }
+
+    .section h2 {
+      margin-bottom: 12px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 18px;
+    }
+
+    .timeline-item {
+      display: grid;
+      gap: 6px;
+    }
+
+    .timeline-date {
+      color: #000000;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      padding: 6px 12px;
+      border-radius: 0px;
+      background: #ffffff;
+      border: 2px solid var(--line);
+      font-size: 0.82rem;
+      box-shadow: var(--shadow);
+    }
+
+    .socials {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .socials a {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 0px;
+      border: 2px solid var(--line);
+      font-size: 0.85rem;
+      background: #ffffff;
+      box-shadow: var(--shadow);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 80px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (min-width: 900px) {
+      .hero {
+        grid-template-columns: 1.1fr 0.9fr;
+      }
+
+      .grid.two {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding-top: calc(env(safe-area-inset-top) + 74px);
+      }
+
+      .avatar {
+        width: 96px;
+        height: 96px;
+      }
+
+      .section {
+        margin-top: 64px;
+      }
+
+      .cta-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="aurora">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="orb three"></div>
+  </div>
+  <div class="noise"></div>
+
+  <header class="dynamic-island" id="dynamicIsland">
+    <div class="island-core" id="islandToggle">
+      <div class="island-badge">AJ</div>
+      <div class="island-text">
+        <div class="island-title" id="islandTitle">Dr. Atul Jakhar</div>
+        <div class="island-subtitle" id="islandSubtitle">National Postdoctoral Fellow · IIT Madras</div>
+      </div>
+    </div>
+    <div class="island-panel" id="islandPanel">
+      <div>
+        <strong id="panelTitle">About</strong>
+        <div id="panelSubtitle" style="color: var(--muted); font-size: 0.9rem;">Profile overview</div>
+      </div>
+      <div class="island-chips" id="panelNav"></div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero section reveal" id="about" data-title="About" data-subtitle="Profile overview">
+      <div>
+        <p class="badge">National Postdoctoral Fellow · IIT Madras</p>
+        <h1>Dr. Atul Jakhar</h1>
+        <p class="reveal" style="margin-top: 16px;">
+          Hello! I’m Dr. Atul Jakhar, currently working as a Postdoctoral Fellow at the Indian Institute of
+          Technology (IIT) Madras. My work sits at the intersection of classical mechanics and modern
+          technology, exploring Computational Fluid Mechanics (CFD) and the application of Artificial
+          Intelligence in fluid dynamics.
+        </p>
+        <p class="reveal" style="margin-top: 12px;">
+          My research investigates the dynamic behavior of fluids through numerical methods and simulations,
+          with a focus on instability and chaos. Beyond academia, I am a passionate athlete and motivational
+          speaker, believing that the discipline required in sports translates directly to scientific rigor.
+        </p>
+        <div class="cta-row">
+          <a class="btn" href="mailto:2019phdmt002@curaj.ac.in">Contact Dr. Jakhar</a>
+          <a class="btn ghost" href="https://scholar.google.com/citations?user=2P_eyfoAAAAJ&hl=en" target="_blank" rel="noopener">View Publications</a>
+        </div>
+      </div>
+      <div class="hero-card reveal">
+        <div class="profile">
+          <img class="avatar" src="https://pbs.twimg.com/profile_images/2007732931549392896/FfnLdurt_400x400.jpg" alt="Dr. Atul Jakhar" />
+          <div>
+            <h3>Chennai, India</h3>
+            <p>National Postdoctoral Fellow · IIT Madras</p>
+            <p style="margin-top: 6px; color: var(--accent-2);">Computational Fluid Dynamics · AI in Fluids</p>
+          </div>
+        </div>
+        <div class="socials">
+          <a href="https://scholar.google.com/citations?user=2P_eyfoAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+          <a href="https://www.linkedin.com/in/dratuljakhar/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/atuljakhar" target="_blank" rel="noopener">GitHub</a>
+          <a href="mailto:2019phdmt002@curaj.ac.in">Email</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="experience" data-title="Academic Positions" data-subtitle="Current & past roles">
+      <h2>Academic Positions</h2>
+      <p>Research and teaching contributions across fluid dynamics and applied mathematics.</p>
+      <div class="timeline" style="margin-top: 20px;">
+        <div class="card timeline-item">
+          <div class="timeline-date">Dec. 2025 — Present</div>
+          <h3>Postdoctoral Fellow</h3>
+          <p style="color: var(--accent-2);">Indian Institute of Technology (IIT) Madras</p>
+          <p>Conducting advanced research in fluid dynamics, focusing on AI-driven simulations and stability analysis.</p>
+        </div>
+        <div class="card timeline-item">
+          <div class="timeline-date">Sept. 2024 — Oct. 2025</div>
+          <h3>Assistant Professor</h3>
+          <p style="color: var(--accent-2);">Dayananda Sagar University</p>
+          <p>Taught Linear Algebra, Differential Equations, and Multivariate Calculus. Developed curriculum for Linear Algebra and Differential Equations.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="education" data-title="Education" data-subtitle="Academic background">
+      <h2>Education</h2>
+      <div class="grid two" style="margin-top: 20px;">
+        <div class="card">
+          <div class="timeline-date">2019 — 2024</div>
+          <h3>Ph.D. in Mathematics</h3>
+          <p style="color: var(--accent-2);">Central University of Rajasthan</p>
+          <p><strong>Thesis:</strong> <a href="http://hdl.handle.net/10603/572924" target="_blank" rel="noopener">A Study of Instability in Newtonian Fluid</a></p>
+          <p>Focus: Linear and Non-linear instability, Chaos theory.</p>
+        </div>
+        <div class="card">
+          <div class="timeline-date">2013 — 2018</div>
+          <h3>Integrated M.Sc. in Mathematics</h3>
+          <p style="color: var(--accent-2);">Central University of Rajasthan</p>
+          <p>Majored in heat and mass transfer of free convection and numerical analysis.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="research" data-title="Research" data-subtitle="Core interests">
+      <h2>Research Interests</h2>
+      <div class="card" style="margin-top: 20px;">
+        <p>My research explores the mathematical modeling of fluid systems, focusing on:</p>
+        <div class="tags">
+          <span class="tag">Computational Fluid Dynamics</span>
+          <span class="tag">Linear Instability</span>
+          <span class="tag">Non-linear Instability</span>
+          <span class="tag">Chaos Theory</span>
+          <span class="tag">Physics-Informed Neural Networks (PINNs)</span>
+          <span class="tag">Numerical Simulations</span>
+        </div>
+        <div style="margin-top: 18px;">
+          <a class="btn ghost" href="https://scholar.google.com/citations?user=2P_eyfoAAAAJ&hl=en" target="_blank" rel="noopener">View Publications on Google Scholar</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="teaching" data-title="Teaching" data-subtitle="Course history">
+      <h2>Teaching History</h2>
+      <div class="grid" style="margin-top: 20px;">
+        <div class="card">
+          <div class="timeline-date">Aug. 2024 — Dec. 2024</div>
+          <h3>Linear Algebra and Differential Equations</h3>
+          <p>B.Tech Course</p>
+        </div>
+        <div class="card">
+          <div class="timeline-date">Feb. 2025 — June 2025</div>
+          <h3>Single and Multivariate Calculus</h3>
+          <p>B.Tech Course</p>
+        </div>
+        <div class="card">
+          <div class="timeline-date">Aug. 2025 — Oct. 2025</div>
+          <h3>Transformations and Numerical Techniques</h3>
+          <p>B.Tech Course</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>© 2026 Dr. Atul Jakhar · National Postdoctoral Fellow · IIT Madras</p>
+    </footer>
+  </main>
+
+  <script>
+    const island = document.getElementById("dynamicIsland");
+    const islandToggle = document.getElementById("islandToggle");
+    const islandTitle = document.getElementById("islandTitle");
+    const islandSubtitle = document.getElementById("islandSubtitle");
+    const panelTitle = document.getElementById("panelTitle");
+    const panelSubtitle = document.getElementById("panelSubtitle");
+    const panelNav = document.getElementById("panelNav");
+
+    const sections = Array.from(document.querySelectorAll("section"));
+    const sectionData = sections.map((section) => ({
+      id: section.id,
+      title: section.dataset.title || section.querySelector("h2")?.textContent || section.id,
+      subtitle: section.dataset.subtitle || "",
+    }));
+
+    function setIsland(item) {
+      islandTitle.textContent = "Dr. Atul Jakhar";
+      islandSubtitle.textContent = `${item.title} · ${item.subtitle}`;
+      panelTitle.textContent = item.title;
+      panelSubtitle.textContent = item.subtitle;
+    }
+
+    function renderNav(activeId) {
+      panelNav.innerHTML = "";
+      sectionData.forEach((item) => {
+        const chip = document.createElement("button");
+        chip.className = "chip" + (item.id === activeId ? " active" : "");
+        chip.textContent = item.title;
+        chip.addEventListener("click", () => {
+          document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" });
+        });
+        panelNav.appendChild(chip);
+      });
+    }
+
+    let currentId = sectionData[0]?.id;
+    if (sectionData[0]) {
+      setIsland(sectionData[0]);
+      renderNav(sectionData[0].id);
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (!visible.length) return;
+        const newId = visible[0].target.id;
+        if (newId !== currentId) {
+          currentId = newId;
+          const item = sectionData.find((data) => data.id === newId);
+          if (item) {
+            setIsland(item);
+            renderNav(newId);
+          }
+        }
+      },
+      { threshold: [0.25, 0.5, 0.75] }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    let compactTimer;
+    window.addEventListener("scroll", () => {
+      island.classList.add("compact");
+      clearTimeout(compactTimer);
+      compactTimer = setTimeout(() => island.classList.remove("compact"), 1100);
+    });
+
+    islandToggle.addEventListener("click", () => {
+      island.classList.toggle("expanded");
+    });
+
+    const revealEls = document.querySelectorAll(".reveal");
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    revealEls.forEach((el) => revealObserver.observe(el));
+  </script>
+</body>
+</html>
